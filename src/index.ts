@@ -75,6 +75,7 @@ export default class Image360 {
           break;
         }
         this.setDirection(event.touches[0].pageX);
+        this.currentPosition = this.getEventPosition(event);
         this.animateImage(event.touches[0].pageX - this.element.getBoundingClientRect().x);
         break;
       case 'touchend':
@@ -89,6 +90,7 @@ export default class Image360 {
     }
 
     this.setDirection(event.pageX);
+    this.currentPosition = this.getEventPosition(event);
     this.animateImage(event.pageX - this.element.getBoundingClientRect().x);
   };
 
