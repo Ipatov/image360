@@ -1,3 +1,23 @@
-Просмотр объекта в 360°
+# Rotate object in 360° on mouse drag and on touch move
 
-Подробнее: https://vk-book.ru/kartinka-360-gradusov-na-javascript/
+[Demo Github Pages](https://n-spl1nter.github.io/image360/)
+
+### Install
+```javascript
+npm install image360
+```
+
+### Usage
+```javascript
+import Image360 from 'image360';
+
+const image360 = new Image360(
+  document.getElementById('targetImageOrBlockId'), {
+    preload: true,
+    imagesUrls: ['pathToImage1.jpg', 'pathToImage2.jpg', ... 'pathToImageN.jpg'],
+});
+
+image360.init();
+```
+
+Based on: https://vk-book.ru/kartinka-360-gradusov-na-javascript/

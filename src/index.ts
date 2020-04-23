@@ -21,11 +21,22 @@ export default class Image360 {
       return;
     }
 
+    this.setInitialImage();
     if (this.shouldPreloadImages()) {
       await this.preloadImages();
     }
 
     this.setHandlers();
+  }
+
+  private setInitialImage() {
+    const path = this.config.imagesUrls[0];
+    if (this.element instanceof HTMLImageElement) {
+      this.element.src = path;
+      return;
+    }
+
+    this.element.style.backgroundImage = `url("${path}")`;
   }
 
   private shouldPreloadImages(): boolean {
@@ -47,7 +58,8 @@ export default class Image360 {
       this.element.src = path;
       return;
     }
-    this.element.style.backgroundImage = `url(${path})`;
+
+    this.element.style.backgroundImage = `url("${path}")`;
   }
 
   private setHandlers(): void {
@@ -88,7 +100,6 @@ export default class Image360 {
     if (!this.dragInProgress) {
       return;
     }
-
     this.setDirection(event.pageX);
     this.currentPosition = this.getEventPosition(event);
     this.animateImage(event.pageX - this.element.getBoundingClientRect().x);
@@ -118,8 +129,6 @@ export default class Image360 {
     const elementPositionPercents = resolvedPosition / elementWidth * 100;
     const imagePercents = 100 / (this.config.loopCount * this.config.imagesUrls.length);
 
-
-    // debugger
     if (Math.abs(elementPositionPercents - this.lastPositionPercents) <= imagePercents) {
       return;
     }
