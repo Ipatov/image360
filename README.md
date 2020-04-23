@@ -23,7 +23,6 @@ const image360 = new Image360(
     imagesUrls: ['pathToImage1.jpg', 'pathToImage2.jpg', ... 'pathToImageN.jpg'],
 });
 
-image360.init();
 ```
 
 Based on: https://vk-book.ru/kartinka-360-gradusov-na-javascript/

@@ -12,7 +12,6 @@ describe('Image360 tests', function () {
       preload: false,
       imagesUrls: ['image1', 'image2'],
     });
-    image360.init();
     expect(image360.config).toEqual({
       imagesUrls: ['image1', 'image2'],
       isBackground: false,

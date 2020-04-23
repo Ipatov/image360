@@ -30,9 +30,11 @@ export default class Image360 {
   constructor(element: HTMLElement, config: Partial<Config> = {}) {
     this.element = element;
     this.config = { ...this.config, ...config };
+
+    this.init();
   }
 
-  public async init() {
+  private async init() {
     if (this.config.imagesUrls.length === 0) {
       return;
     }
