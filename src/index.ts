@@ -1,8 +1,24 @@
-import * as types from './types';
-import { DEFAULT_CONFIG, DIRECTION } from './constants';
+type Config = {
+  preload: boolean,
+  isBackground: boolean,
+  loopCount: number,
+  imagesUrls: string[],
+};
+
+export enum DIRECTION {
+  LEFT,
+  RIGHT,
+}
+
+export const DEFAULT_CONFIG: Config = {
+  preload: true,
+  isBackground: false,
+  loopCount: 10,
+  imagesUrls: [],
+};
 
 export default class Image360 {
-  readonly config: types.Config = DEFAULT_CONFIG;
+  readonly config: Config = DEFAULT_CONFIG;
   readonly element: HTMLElement;
 
   private direction: DIRECTION = DIRECTION.LEFT;
@@ -11,7 +27,7 @@ export default class Image360 {
   private lastPositionPercents: number = 0;
   private dragInProgress: boolean = false;
 
-  constructor(element: HTMLElement, config: Partial<types.Config> = {}) {
+  constructor(element: HTMLElement, config: Partial<Config> = {}) {
     this.element = element;
     this.config = { ...this.config, ...config };
   }

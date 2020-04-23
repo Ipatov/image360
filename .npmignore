@@ -5,3 +5,4 @@ examples
 .babelrc
 tsconfig.json
 webpack.config.js
+.editorconfig
