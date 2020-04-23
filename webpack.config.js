@@ -1,10 +1,18 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
-const htmlWebpackPlugin = new HtmlWebpackPlugin({
+const htmlWebpackPlugin = new HtmlPlugin({
   template: path.join(__dirname, 'examples', 'src', 'index.html'),
   filename: 'index.html',
 });
+
+const copyPlugin = new CopyPlugin([
+  {
+    from: path.join(__dirname, 'examples', 'src', 'JPEG'),
+    to: path.join(__dirname, 'examples', 'dist', 'JPEG'),
+  }
+]);
 
 
 module.exports = {
@@ -29,7 +37,10 @@ module.exports = {
     ]
   },
 
-  plugins: [htmlWebpackPlugin],
+  plugins: [
+    copyPlugin,
+    htmlWebpackPlugin,
+  ],
 
   resolve: {
     extensions: ['.ts', '.js'],
