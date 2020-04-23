@@ -7,15 +7,20 @@ export default class Image360 {
 
   private direction: DIRECTION = DIRECTION.LEFT;
   private currentPosition: number = 0;
+  private currentImageIndex: number = 0;
+  private lastPositionPercents: number = 0;
   private dragInProgress: boolean = false;
 
   constructor(element: HTMLElement, config: Partial<types.Config> = {}) {
     this.element = element;
     this.config = { ...this.config, ...config };
-    this.init();
   }
 
-  private async init() {
+  public async init() {
+    if (this.config.imagesUrls.length === 0) {
+      return;
+    }
+
     if (this.shouldPreloadImages()) {
       await this.preloadImages();
     }
@@ -84,7 +89,7 @@ export default class Image360 {
     }
 
     this.setDirection(event.pageX);
-    this.animateImage(event.pageX - this.element.getBoundingClientRect().x)
+    this.animateImage(event.pageX - this.element.getBoundingClientRect().x);
   };
 
   private handleMouseUp = (event: MouseEvent): void => {
@@ -100,6 +105,35 @@ export default class Image360 {
   }
 
   private animateImage(position: number): void {
-    console.log('animateImageToPosition---', position);
+    const elementWidth = this.element.getBoundingClientRect().width;
+    const resolvedPosition =
+      position < 0
+        ? 0
+        : position > elementWidth
+          ? elementWidth
+          : position;
+
+    const elementPositionPercents = resolvedPosition / elementWidth * 100;
+    const imagePercents = 100 / (this.config.loopCount * this.config.imagesUrls.length);
+
+
+    // debugger
+    if (Math.abs(elementPositionPercents - this.lastPositionPercents) <= imagePercents) {
+      return;
+    }
+
+    this.lastPositionPercents = elementPositionPercents;
+    this.currentImageIndex =
+      this.direction === DIRECTION.LEFT
+        ? this.currentImageIndex -1
+        : this.currentImageIndex + 1;
+
+    if (this.currentImageIndex < 0) {
+      this.currentImageIndex = this.config.imagesUrls.length - 1;
+    } else if (this.currentImageIndex > this.config.imagesUrls.length - 1) {
+      this.currentImageIndex = 0;
+    }
+
+    this.setImageToElement(this.config.imagesUrls[this.currentImageIndex]);
   };
 }
