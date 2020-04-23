@@ -21,6 +21,10 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+      },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
       }
     ]
   },
@@ -28,7 +32,7 @@ module.exports = {
   plugins: [htmlWebpackPlugin],
 
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.ts', '.js'],
   },
 
   devServer: {
