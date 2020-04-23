@@ -1,0 +1,25 @@
+{
+  "name": "image360",
+  "version": "0.0.1",
+  "description": "Просмотр объекта в 360°",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n-spl1nter/image360.git"
+  },
+  "keywords": [
+    "360°",
+    "360",
+    "image",
+    "rotate"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n-spl1nter/image360/issues"
+  },
+  "homepage": "https://github.com/n-spl1nter/image360#readme"
+}
