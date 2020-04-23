@@ -2,7 +2,13 @@
 
 [Demo Github Pages](https://n-spl1nter.github.io/image360/)
 
-### Install
+### Use CDN
+
+```html
+<script src="https://unpkg.com/image360/dist/index.js"></script>
+```
+
+### Or install as package
 ```javascript
 npm install image360
 ```

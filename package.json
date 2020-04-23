@@ -7,9 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development",
-    "transpile": "tsc",
+    "transpile": "webpack --mode production --config webpack.config.prod.js --progress",
     "prepublishOnly": "npm run transpile",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production --progress",
     "deploy": "gh-pages -d examples/dist",
     "publish-demo": "npm run build && npm run deploy && rm -r examples/dist",
     "postpublish": "rm -r dist"
